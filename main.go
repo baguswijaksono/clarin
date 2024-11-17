@@ -12,6 +12,7 @@ import (
  	"os"
   
 	"github.com/tucnak/telebot"
+  "github.com/baguswijaksono/clarin/vuln"
 )
 
 const apiBase = "https://api.baguswinaksono.my.id"
@@ -31,7 +32,7 @@ func main() {
 	RegisterKakeiboCommands(bot)
 	RegisterUrlsCommands(bot)
 	RegisterUtilsCommands(bot)
-  RegisterVulnCommands(bot)
+  vuln.RegisterVulnCommands(bot)
   RegisterBkrmkCommands(bot)
 	log.Println("Bot is running...")
 	bot.Start()

@@ -1,4 +1,4 @@
-package main
+package vuln
 
 func RegisterVulnCommands(bot *telebot.Bot) {
     bot.Handle("/vc", func(m *telebot.Message) {
