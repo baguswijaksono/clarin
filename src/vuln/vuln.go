@@ -1,6 +1,18 @@
 package vuln
 
-func RegisterVulnCommands(bot *telebot.Bot) {
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"net/url"
+	"strings"
+	"github.com/tucnak/telebot"
+)
+
+const apiBase = "https://api.baguswinaksono.my.id"
+
+func RegisterCommands(bot *telebot.Bot) {
     bot.Handle("/vc", func(m *telebot.Message) {
         parts := strings.SplitN(m.Text, " ", 5)
         if len(parts) < 5 {
@@ -14,7 +26,7 @@ func RegisterVulnCommands(bot *telebot.Bot) {
         status := parts[4]
 
         resp, err := http.Get(fmt.Sprintf("%s/vuln/c.php?title=%s&description=%s&severity=%s&status=%s",
-            vapiBase, url.QueryEscape(title), url.QueryEscape(description), url.QueryEscape(severity), url.QueryEscape(status)))
+            apiBase, url.QueryEscape(title), url.QueryEscape(description), url.QueryEscape(severity), url.QueryEscape(status)))
         if err != nil {
             log.Printf("Error fetching API: %v\n", err)
             bot.Send(m.Sender, "Error creating vulnerability report.")
